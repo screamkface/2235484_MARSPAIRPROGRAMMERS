@@ -6,8 +6,10 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
+  // Skip generated build artifacts.
   globalIgnores(['dist']),
   {
+    // Lint TS/TSX sources with recommended JS/TS + React hooks rules.
     files: ['**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,

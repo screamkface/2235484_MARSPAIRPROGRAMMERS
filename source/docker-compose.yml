@@ -1,26 +1,26 @@
-version: "3.9"
-
 services:
+  # External simulator provided by exam assignment (do not modify internals).
   simulator:
     image: mars-iot-simulator:multiarch_v1
-    container_name: mars-simulator
     ports:
       - "8080:8080"
 
+  # Message broker that decouples ingestion from processing.
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
 
+  # Polls simulator REST sensors, normalizes payloads, publishes events.
   ingestion-service:
     build:
       context: ./ingestion-service
-    container_name: ingestion-service
     environment:
       SIMULATOR_BASE_URL: http://simulator:8080
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+      RABBITMQ_EXCHANGE: mars.events
+      RABBITMQ_ROUTING_KEY: sensor.reading
       POLL_INTERVAL_SECONDS: 5
     depends_on:
       - simulator
@@ -28,13 +28,16 @@ services:
     ports:
       - "8001:8000"
 
+  # Consumes events, evaluates rules, controls actuators, exposes API + WS.
   engine-service:
     build:
       context: ./engine-service
-    container_name: engine-service
     environment:
       SIMULATOR_BASE_URL: http://simulator:8080
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+      RABBITMQ_EXCHANGE: mars.events
+      RABBITMQ_ROUTING_KEY: sensor.reading
+      RABBITMQ_QUEUE: engine.sensor.events
       DB_PATH: /data/rules.db
     volumes:
       - engine_data:/data
@@ -44,10 +47,10 @@ services:
     ports:
       - "8002:8000"
 
+  # Dashboard SPA for monitoring and control.
   frontend:
     build:
       context: ./frontend
-    container_name: frontend
     environment:
       VITE_API_BASE_URL: http://localhost:8002
     depends_on:
@@ -56,4 +59,5 @@ services:
       - "3000:3000"
 
 volumes:
+  # Persists engine SQLite DB (rules) across container restarts.
   engine_data:

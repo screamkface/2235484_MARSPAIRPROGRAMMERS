@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title { font: 700 42px 'Segoe UI', Arial, sans-serif; fill: #7a0019; }
+      .node { fill: #fff; stroke: #7a0019; stroke-width: 3; rx: 16; ry: 16; }
+      .txtH { font: 700 24px 'Segoe UI', Arial, sans-serif; fill: #1f1f1f; }
+      .txtP { font: 500 20px 'Segoe UI', Arial, sans-serif; fill: #2f2f2f; }
+      .arrow { stroke: #111827; stroke-width: 4; fill: none; marker-end: url(#arr); }
+      .good { fill: #ecfdf3; stroke: #16a34a; stroke-width: 3; rx: 16; ry: 16; }
+      .bad { fill: #fff7ed; stroke: #ea580c; stroke-width: 3; rx: 16; ry: 16; }
+    </style>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#111827" />
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f8f9fb"/>
+  <text x="70" y="80" class="title">Automation Rule Lifecycle</text>
+
+  <rect x="100" y="180" width="360" height="160" class="node"/>
+  <text x="130" y="235" class="txtH">Rule CRUD</text>
+  <text x="130" y="270" class="txtP">Create / Edit / Enable / Delete</text>
+  <text x="130" y="300" class="txtP">via `/api/rules` endpoints</text>
+
+  <rect x="560" y="180" width="360" height="160" class="node"/>
+  <text x="590" y="235" class="txtH">Persist</text>
+  <text x="590" y="270" class="txtP">SQLite `rules` table</text>
+  <text x="590" y="300" class="txtP">volume-backed (`engine_data`)</text>
+
+  <rect x="1020" y="180" width="460" height="160" class="node"/>
+  <text x="1050" y="235" class="txtH">Evaluate on Event Arrival</text>
+  <text x="1050" y="270" class="txtP">sensor_name + operator + threshold</text>
+  <text x="1050" y="300" class="txtP">optional unit matching</text>
+
+  <rect x="320" y="510" width="420" height="180" class="good"/>
+  <text x="350" y="565" class="txtH">Condition TRUE</text>
+  <text x="350" y="600" class="txtP">POST actuator command to simulator</text>
+  <text x="350" y="630" class="txtP">broadcast actuator_update to UI</text>
+
+  <rect x="900" y="510" width="420" height="180" class="bad"/>
+  <text x="930" y="565" class="txtH">Condition FALSE</text>
+  <text x="930" y="600" class="txtP">no actuator action</text>
+  <text x="930" y="630" class="txtP">latest state still refreshed</text>
+
+  <path d="M460 260 C500 260, 520 260, 560 260" class="arrow"/>
+  <path d="M920 260 C960 260, 980 260, 1020 260" class="arrow"/>
+  <path d="M1180 340 C1160 430, 1080 470, 980 510" class="arrow"/>
+  <path d="M1160 340 C1040 430, 730 470, 620 510" class="arrow"/>
+</svg>

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title { font: 700 42px 'Segoe UI', Arial, sans-serif; fill: #7a0019; }
+      .label { font: 600 26px 'Segoe UI', Arial, sans-serif; fill: #1f1f1f; }
+      .small { font: 500 20px 'Segoe UI', Arial, sans-serif; fill: #2f2f2f; }
+      .box { fill: #ffffff; stroke: #7a0019; stroke-width: 3; rx: 18; ry: 18; }
+      .infra { fill: #fff5f7; stroke: #7a0019; stroke-width: 3; rx: 18; ry: 18; }
+      .arrow { stroke: #0f172a; stroke-width: 4; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="900" fill="#f8f9fb" />
+  <text x="70" y="80" class="title">Mars Habitat Automation Platform - Architecture Overview</text>
+
+  <rect x="90" y="170" width="280" height="180" class="box" />
+  <text x="130" y="230" class="label">Simulator</text>
+  <text x="130" y="265" class="small">REST sensors</text>
+  <text x="130" y="295" class="small">REST actuators</text>
+  <text x="130" y="325" class="small">Port 8080</text>
+
+  <rect x="470" y="150" width="340" height="220" class="box" />
+  <text x="520" y="215" class="label">Ingestion Service</text>
+  <text x="520" y="250" class="small">discover + poll sensors</text>
+  <text x="520" y="280" class="small">normalize to UnifiedEvent</text>
+  <text x="520" y="310" class="small">publish to RabbitMQ</text>
+  <text x="520" y="340" class="small">Port 8001</text>
+
+  <rect x="920" y="190" width="260" height="140" class="infra" />
+  <text x="980" y="250" class="label">RabbitMQ</text>
+  <text x="980" y="285" class="small">5672 / 15672</text>
+
+  <rect x="1230" y="140" width="300" height="240" class="box" />
+  <text x="1270" y="205" class="label">Engine Service</text>
+  <text x="1270" y="240" class="small">consume events</text>
+  <text x="1270" y="270" class="small">latest state cache</text>
+  <text x="1270" y="300" class="small">rule engine + actuators</text>
+  <text x="1270" y="330" class="small">REST + WebSocket (8002)</text>
+
+  <rect x="1160" y="440" width="220" height="120" class="infra" />
+  <text x="1215" y="495" class="label">SQLite</text>
+  <text x="1210" y="525" class="small">rules.db volume</text>
+
+  <rect x="500" y="560" width="420" height="200" class="box" />
+  <text x="550" y="625" class="label">Frontend Dashboard</text>
+  <text x="550" y="660" class="small">sensors, actuators, rules UI</text>
+  <text x="550" y="690" class="small">WebSocket live updates</text>
+  <text x="550" y="720" class="small">Port 3000</text>
+
+  <path d="M370 235 C420 235, 430 235, 470 235" class="arrow" />
+  <path d="M810 260 C860 260, 870 260, 920 260" class="arrow" />
+  <path d="M1180 260 C1200 260, 1210 260, 1230 260" class="arrow" />
+  <path d="M1230 300 C1180 370, 360 390, 280 340" class="arrow" />
+  <path d="M1320 380 C1320 410, 1290 420, 1270 440" class="arrow" />
+  <path d="M1230 300 C1120 450, 980 570, 920 620" class="arrow" />
+  <path d="M920 640 C980 620, 1120 560, 1230 420" class="arrow" />
+
+  <text x="430" y="215" class="small">polling</text>
+  <text x="835" y="240" class="small">sensor.reading</text>
+  <text x="1188" y="242" class="small">queue bind</text>
+  <text x="730" y="540" class="small">REST + WS</text>
+  <text x="1170" y="415" class="small">rules persistence</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title { font: 700 42px 'Segoe UI', Arial, sans-serif; fill: #7a0019; }
+      .step { fill: #ffffff; stroke: #7a0019; stroke-width: 3; rx: 16; ry: 16; }
+      .num { font: 700 28px 'Segoe UI', Arial, sans-serif; fill: #7a0019; }
+      .h { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #1f1f1f; }
+      .p { font: 500 20px 'Segoe UI', Arial, sans-serif; fill: #2f2f2f; }
+      .arrow { stroke: #111827; stroke-width: 4; fill: none; marker-end: url(#a); }
+    </style>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#111827" />
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f8f9fb" />
+  <text x="70" y="80" class="title">Unified Event Lifecycle</text>
+
+  <rect x="110" y="170" width="380" height="180" class="step" />
+  <text x="140" y="220" class="num">1</text>
+  <text x="190" y="220" class="h">Acquire</text>
+  <text x="140" y="260" class="p">Ingestion polls REST sensors</text>
+  <text x="140" y="290" class="p">and receives heterogeneous JSON.</text>
+
+  <rect x="610" y="170" width="380" height="180" class="step" />
+  <text x="640" y="220" class="num">2</text>
+  <text x="690" y="220" class="h">Normalize</text>
+  <text x="640" y="260" class="p">Payloads become UnifiedEvent</text>
+  <text x="640" y="290" class="p">with schema_family + raw_payload.</text>
+
+  <rect x="1110" y="170" width="380" height="180" class="step" />
+  <text x="1140" y="220" class="num">3</text>
+  <text x="1190" y="220" class="h">Publish</text>
+  <text x="1140" y="260" class="p">Message sent to RabbitMQ exchange</text>
+  <text x="1140" y="290" class="p">mars.events / sensor.reading.</text>
+
+  <rect x="360" y="500" width="420" height="180" class="step" />
+  <text x="390" y="550" class="num">4</text>
+  <text x="440" y="550" class="h">Process</text>
+  <text x="390" y="590" class="p">Engine consumes event, updates</text>
+  <text x="390" y="620" class="p">latest sensor state in memory.</text>
+
+  <rect x="900" y="500" width="520" height="220" class="step" />
+  <text x="930" y="550" class="num">5</text>
+  <text x="980" y="550" class="h">Act + Broadcast</text>
+  <text x="930" y="590" class="p">Rules are evaluated on arrival.</text>
+  <text x="930" y="620" class="p">If matched: actuator REST command.</text>
+  <text x="930" y="650" class="p">Then WebSocket updates dashboard.</text>
+
+  <path d="M490 260 C540 260, 560 260, 610 260" class="arrow" />
+  <path d="M990 260 C1040 260, 1060 260, 1110 260" class="arrow" />
+  <path d="M1300 350 C1250 430, 1180 470, 1080 500" class="arrow" />
+  <path d="M1150 500 C1060 450, 860 430, 760 450" class="arrow" />
+  <path d="M740 500 C700 420, 580 360, 380 350" class="arrow" />
+</svg>

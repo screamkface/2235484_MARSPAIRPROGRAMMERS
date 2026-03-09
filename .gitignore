@@ -1,13 +1,53 @@
-__pycache__/
-*.pyc
-*.pyo
-.env
-.venv/
-node_modules/
-dist/
+# OS / editor
+.DS_Store
+Thumbs.db
 .idea/
 .vscode/
-.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+coverage/
+.env
+.venv/
+venv/
+.tmp_pdf_env/
+scripts/__pycache__/
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+
+# Runtime artifacts
 *.db
+*.sqlite3
+*.log
 *.tar
-SCHEMA_CONTRACT.mdmars-iot-simulator-oci.tar
+
+# Local-only project inputs / extras not required in final delivery
+mars-iot-simulator-oci.tar
+Laboratory_of_Advanced_Programming_March_2026.pdf
+Student_doc_example.md
+presentazione.ppt
+docu_code.md
+docu_code.pdf
+scripts/generate_docu_code_pdf.py
+
+# Generated slide outputs / temporary assets
+booklets/slides/presentation.pdf
+booklets/slides/assets/template_extract/
+booklets/slides/assets/presentazione.pptx
+
+# Temporary imported files accidentally saved at booklets root
+booklets/*.png
+booklets/*.jpg
+booklets/*.jpeg
+
+# Windows ADS
+*:Zone.Identifier
