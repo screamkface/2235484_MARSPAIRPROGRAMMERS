@@ -29,7 +29,11 @@ dist/
 *.sqlite3
 *.log
 *.tar
+*.tmp
 
+# Delivery scope (from assignment):
+# required root structure is input.md, Student_doc.md, source/, booklets/
+# keep local-only files and non-deliverable artifacts out of git.
 # Local-only project inputs / extras not required in final delivery
 mars-iot-simulator-oci.tar
 Laboratory_of_Advanced_Programming_March_2026.pdf
@@ -38,6 +42,7 @@ presentazione.ppt
 docu_code.md
 docu_code.pdf
 scripts/generate_docu_code_pdf.py
+scripts/
 
 # Generated slide outputs / temporary assets
 booklets/slides/presentation.pdf
@@ -48,6 +53,9 @@ booklets/slides/assets/presentazione.pptx
 booklets/*.png
 booklets/*.jpg
 booklets/*.jpeg
+
+# Other local exports not required by assignment
+*.pdf:Zone.Identifier
 
 # Windows ADS
 *:Zone.Identifier

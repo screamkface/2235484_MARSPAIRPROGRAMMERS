@@ -123,7 +123,7 @@ Antonio Rubino (2235484)
 
 # Architecture Overview
 
-![diagram](./assets/architecture-overview.svg)
+![width:1200px](./assets/system-architecture-slide.svg)
 
 <div class="small">Ingestion and processing are decoupled through RabbitMQ. The frontend consumes REST + WebSocket APIs from engine-service.</div>
 
